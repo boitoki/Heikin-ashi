@@ -3,15 +3,15 @@ indicator("Heikin-ashi", overlay=false)
 
 ///////////////
 // Functions //
-heikinashi (o, h, l, c, latest) =>
-    _hclose = latest
+heikinashi (_o, _h, _l, _c, float _my_close = na) =>
+    _hclose = na(_my_close) ? math.avg(_o, _h, _l, _c) : _my_close
 
     // Day1
-    _hopen = math.avg(o[1], h[1], l[1], c[1])
+    _hopen = math.avg(_o[1], _h[1], _l[1], _c[1])
 
     // Day2
     if (not na(_hopen[1]))
-        _hopen := (nz(_hopen[1]) + nz(_hclose[1])) / 2
+        _hopen := math.avg(nz(_hopen[1]), nz(_hclose[1]))
     
     [_hopen, high, low, _hclose]
 
