@@ -13,11 +13,11 @@ heikinashi (o, h, l, c, latest) =>
     if (not na(_hopen[1]))
         _hopen := (nz(_hopen[1]) + nz(_hclose[1])) / 2
     
-    [_hopen, _hclose]
+    [_hopen, high, low, _hclose]
 
 //////////
 // Calc //
-[hopen, hclose] = heikinashi(open, high, low, close, ohlc4)
+[hopen, _, _, hclose] = heikinashi(open, high, low, close, ohlc4)
 color_body = hclose > hopen ? color.green : color.red
 color_wick = color.gray
 color_border = color.black
